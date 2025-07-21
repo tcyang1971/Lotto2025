@@ -37,7 +37,11 @@ class MainActivity : ComponentActivity() {
 fun Play(modifier: Modifier = Modifier) {
     var lucky = (1..100).random()
 
-    Column(modifier = modifier) { // <-- 將 Text 和 Button 放在 Column 中
+    Column(
+        modifier = modifier.fillMaxSize(), // <-- 讓 Column 填滿所有可用空間
+        verticalArrangement = Arrangement.Center, // <-- 垂直方向置中排列
+        horizontalAlignment = Alignment.CenterHorizontally // <-- 水平方向置中對齊
+    ) { // <-- 將 Text 和 Button 放在 Column 中
         Text(
             text = "樂透數字(1-100)為 $lucky"
         )
