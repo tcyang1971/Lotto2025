@@ -37,13 +37,15 @@ class MainActivity : ComponentActivity() {
 fun Play(modifier: Modifier = Modifier) {
     var lucky = (1..100).random()
 
-    Text(
-        text = "樂透數字(1-100)為 $lucky"
-    )
+    Column(modifier = modifier) { // <-- 將 Text 和 Button 放在 Column 中
+        Text(
+            text = "樂透數字(1-100)為 $lucky"
+        )
 
-    Button(
-        onClick = { lucky = (1..100).random() }
-    ) {
-        Text("重新產生樂透碼")
+        Button(
+            onClick = { lucky = (1..100).random() }
+        ) {
+            Text("重新產生樂透碼")
+        }
     }
 }
