@@ -1,9 +1,11 @@
 package tw.edu.pu.csim.tcyang.lotto
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,6 +23,7 @@ import androidx.compose.runtime.getValue // 引入 getValue
 import androidx.compose.runtime.mutableStateOf // 引入 mutableStateOf
 import androidx.compose.runtime.remember // 引入 remember
 import androidx.compose.runtime.setValue // 引入 setValue
+import androidx.compose.ui.platform.LocalContext
 
 
 class MainActivity : ComponentActivity() {
@@ -41,10 +44,17 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Play(modifier: Modifier = Modifier) {
+    // 獲取當前的 Context，用於顯示 Toast
+    val context = LocalContext.current
+
     var lucky by remember { mutableStateOf((1..100).random()) }
 
     Column(
-        modifier = modifier.fillMaxSize(), // <-- 讓 Column 填滿所有可用空間
+        modifier = modifier
+            .fillMaxSize() // <-- 讓 Column 填滿所有可用空間
+            .clickable { // <-- 新增 clickable modifier
+                Toast.makeText(context, "螢幕觸控", Toast.LENGTH_SHORT).show()
+            },
         verticalArrangement = Arrangement.Center, // <-- 垂直方向置中排列
         horizontalAlignment = Alignment.CenterHorizontally // <-- 水平方向置中對齊
     ) { // <-- 將 Text 和 Button 放在 Column 中
